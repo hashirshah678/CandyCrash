@@ -20,6 +20,8 @@ export async function replace(routeName: string, params?: object) {
   }
 }
 
+// Reset the navigation stack and navigate to the specified route
+// mean clear all history and navigate to the specified route
 export async function resetAndNavigate(routeName: string) {
   navigationRef.isReady();
   if (navigationRef.isReady()) {
