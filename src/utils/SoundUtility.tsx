@@ -9,7 +9,7 @@ export const playSound = (soundName: string, loop: boolean  = false) => {
   }
 };
 
-const getSoundPath = (soundName: string) => {
+export const getSoundPath = (soundName: string) => {
   switch (soundName) {
     case 'ui':
       return require('../assets/sfx/ui.mp3');

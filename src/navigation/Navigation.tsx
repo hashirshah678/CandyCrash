@@ -7,41 +7,44 @@ import SplashScreen from '../screens/SplashScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LevelScreen from '../screens/LevelScreen';
 import GameScreen from '../screens/GameScreen';
+import { SoundProvider } from './SoundContext';
 
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   return (
-    <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: true,
-        }}
-        initialRouteName="Splash">
-        <Stack.Screen name="Splash" component={SplashScreen} />
-        <Stack.Screen
-          name="Home"
-          options={{
-            animation: 'fade',
+    <SoundProvider>
+      <NavigationContainer ref={navigationRef}>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: true,
           }}
-          component={HomeScreen}
-        />
-        <Stack.Screen
-          name="Level"
-          options={{
-            animation: 'fade',
-          }}
-          component={LevelScreen}
-        />
-        <Stack.Screen
-          name="Game"
-          options={{
-            animation: 'fade',
-          }}
-          component={GameScreen}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+          initialRouteName="Splash">
+          <Stack.Screen name="Splash" component={SplashScreen} />
+          <Stack.Screen
+            name="Home"
+            options={{
+              animation: 'fade',
+            }}
+            component={HomeScreen}
+          />
+          <Stack.Screen
+            name="Level"
+            options={{
+              animation: 'fade',
+            }}
+            component={LevelScreen}
+          />
+          <Stack.Screen
+            name="Game"
+            options={{
+              animation: 'fade',
+            }}
+            component={GameScreen}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SoundProvider>
   );
 };
 

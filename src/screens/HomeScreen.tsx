@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {StyleSheet, ImageBackground, StatusBar} from 'react-native';
 import React, {FC, useEffect} from 'react';
 import {commonStyles} from '../styles/commonStyles';
@@ -8,10 +9,18 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
 } from 'react-native-reanimated';
+import {useSound} from '../navigation/SoundContext';
 const HomeScreen: FC = () => {
   // it is used to check if the screen is focused or not, in simple words, if the screen is visible or not
+  const {playSound} = useSound();
   const isFocused = useIsFocused();
   const translateY = useSharedValue(-200);
+
+  useEffect(() => {
+    if (isFocused) {
+      // playSound('bg', true);
+    }
+  }, [isFocused]);
 
   useEffect(() => {
     translateY.value = withTiming(0, {duration: 3000});
