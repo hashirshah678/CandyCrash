@@ -1,5 +1,5 @@
 import React from 'react';
-import Navigation from './src/navigation/navigation';
+import Navigation from './src/navigation/Navigation';
 import {Colors} from './src/utils/Constants';
 import {StatusBar} from 'react-native';
 

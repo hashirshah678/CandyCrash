@@ -22,7 +22,7 @@ export const SoundProvider = ({children}: SoundContextProviderProps) => {
   const stopSound = (soundName: string) => {
     // stop the sound
     setSound(prevSound => {
-      return prevSound?.filter(sound => sound.id !== soundName);
+      return prevSound?.filter(Sound => Sound.id !== soundName);
     });
   };
 
@@ -32,7 +32,7 @@ export const SoundProvider = ({children}: SoundContextProviderProps) => {
     if (GetSoundPath) {
       setSound(prevSound => {
         const updatedSounds = prevSound?.filter(
-          sound => sound.id !== soundName,
+          Sound => Sound.id !== soundName,
         );
         return [
           ...updatedSounds,
@@ -55,12 +55,12 @@ export const SoundProvider = ({children}: SoundContextProviderProps) => {
         stopSound,
       }}>
       {children}
-      {sound.map(sound => {
+      {sound.map(Sound => {
         return (
           <Video
-            key={sound.id}
-            source={sound.path}
-            repeat={sound.repeat}
+            key={Sound.id}
+            source={Sound.path}
+            repeat={Sound.repeat}
             playInBackground={true}
             muted={false}
             resizeMode="cover"
