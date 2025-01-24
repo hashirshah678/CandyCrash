@@ -51,7 +51,7 @@ const GameScreen = () => {
   useEffect(() => {
     if (timer === 0) {
       console.log(timer);
-      
+
       handleGameOver();
     }
   }, [timer]);
