@@ -3,7 +3,7 @@ import {Animated} from 'react-native';
 import {State} from 'react-native-gesture-handler';
 import {playSound} from '../../utils/SoundUtility';
 import {RFPercentage} from 'react-native-responsive-fontsize';
-import { checkForMatches, checkForPossibleMoves, clearMatches, fillRandomCandies, shiftCandiesDown } from './gridUtils';
+import { checkForMatches, checkForPossibleMoves, clearMatches, fillRandomCandies, handleSuffleAndClear, shiftCandiesDown } from './gridUtils';
 
 enum Direction {
   UP = 'UP',
@@ -143,12 +143,12 @@ const useGameLogics = (data: any[][], setData: (data: any) => any) => {
           const hasMove = await checkForPossibleMoves(newGrid);
           if (!hasMove) {
             const d = await handleSuffleAndClear(newGrid);
-            newGrid = d.newGrid;
+            newGrid = d.grid;
             totalClearedCandies += d.clearMatching;
             while (!(await checkForPossibleMoves(newGrid))) {
               const p = await handleSuffleAndClear(newGrid);
-              newGrid = p.newGrid;
-              totalClearedCandies += d.clearMatching;
+              newGrid = p.grid;
+              totalClearedCandies += p.clearMatching;
             }
             setData(newGrid);
           }

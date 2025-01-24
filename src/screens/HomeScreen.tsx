@@ -12,7 +12,7 @@ import Animated, {
 import {useSound} from '../navigation/SoundContext';
 import LottieView from 'lottie-react-native';
 import PressScale from '../components/ui/PressScale';
-import { navigate } from '../utils/NavigationUtil';
+import {navigate} from '../utils/NavigationUtil';
 import Footer from '../components/ui/Footer';
 const HomeScreen: FC = () => {
   // it is used to check if the screen is focused or not, in simple words, if the screen is visible or not
@@ -23,7 +23,7 @@ const HomeScreen: FC = () => {
 
   useEffect(() => {
     if (isFocused) {
-      // playSound('bg', true);
+      playSound('bg', true);
     }
   }, [isFocused]);
 
@@ -66,7 +66,7 @@ const HomeScreen: FC = () => {
       </Animated.View>
 
       <PressScale
-      style={styles.playContainer}
+        style={styles.playContainer}
         onPress={() => {
           navigate('Level');
         }}>
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     // alignSelf: 'center',
   },
-  playContainer:{
+  playContainer: {
     marginTop: screenHeight * 0.4,
-  }
+  },
 });

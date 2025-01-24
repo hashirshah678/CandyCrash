@@ -119,7 +119,8 @@ export const checkForPossibleMoves = async (
   const swap = (r1: number, c1: number, r2: number, c2: number) => {
     const temp = grid[r1][c1];
     grid[r1][c1] = grid[r2][c2];
-    grid[r2][c1] = temp;
+    // grid[r2][c1] = temp;
+    grid[r2][c2] = temp;
   };
 
   for (let row = 0; row < rl; row++) {
@@ -153,7 +154,7 @@ export const checkForPossibleMoves = async (
 };
 
 //
-export const Suffle = async (grid: any[][]) => {
+const Shuffle = async (grid: any[][]) => {
   console.log('Shuffling Grid....');
   const candies = grid.flat().filter(cell => cell !== null);
   const rowlength = grid.length;
@@ -168,6 +169,7 @@ export const Suffle = async (grid: any[][]) => {
   for (let row = 0; row < rowlength; row++) {
     for (let col = 0; col < collength; col++) {
       if (grid[row][col] !== null) {
+        console.log(grid[row][col], '===', candies[index++]);
         grid[row][col] = candies[index++];
       }
     }
@@ -176,4 +178,22 @@ export const Suffle = async (grid: any[][]) => {
   return grid;
 };
 
-export const handleSuffleAndClear = async (gird: any[][]) => {};
+export const handleSuffleAndClear = async (gird: any[][]) => {
+  console.log('handling shuffer and clear....');
+  let newGrid = await Shuffle(gird);
+  let totalClearedCandies = 0;
+  let matchs = await checkForMatches(newGrid);
+  while (matchs.length > 0) {
+    totalClearedCandies += matchs.length;
+    newGrid = await clearMatches(gird, matchs);
+    newGrid = await shiftCandiesDown(newGrid);
+    newGrid = await fillRandomCandies(newGrid);
+
+    matchs = await checkForMatches(newGrid);
+  }
+
+  return {
+    grid: newGrid,
+    clearMatching: totalClearedCandies,
+  };
+};
